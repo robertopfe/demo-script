@@ -12,6 +12,10 @@ jobs:
         
       - uses: actions/github-script@v6
         id: assign-keyvault
+        env:
+          KEYVAULT_NAME_DEV: dev
+          KEYVAULT_NAME_PRE: pre
+          KEYVAULT_NAME_PRO: pro
         with:
           script: |
             const { KEYVAULT_NAME_DEV, KEYVAULT_NAME_PRE, KEYVAULT_NAME_PRO } = process.env;
