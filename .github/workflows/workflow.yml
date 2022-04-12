@@ -1,0 +1,23 @@
+name: Compile with other repo dependency
+on: [push]
+env:
+  KEYVAULT_NAME_DEV: dev
+  KEYVAULT_NAME_PRE: pre
+  KEYVAULT_NAME_PRO: pro
+jobs:
+  compile-mvn:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2          
+        
+      - uses: actions/github-script@v6
+        id: assign-keyvault
+        with:
+          script: |
+            const { KEYVAULT_NAME_DEV, KEYVAULT_NAME_PRE, KEYVAULT_NAME_PRO } = process.env;
+            let keyVaultName = ${KEYVAULT_NAME_PRO};
+            return keyVaultName;
+          result-encoding: string
+
+      - name: Get result
+        run: echo "${{steps.assign-keyvault.outputs.result}}"
