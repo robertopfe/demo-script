@@ -6,9 +6,9 @@ env:
   KEYVAULT_NAME_PRO: pro
 jobs:
   compile-mvn:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2          
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2          
         
       - uses: actions/github-script@v6
         id: assign-keyvault
