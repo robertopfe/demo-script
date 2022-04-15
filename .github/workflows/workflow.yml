@@ -1,4 +1,4 @@
-name: Compile with other repo dependency
+name: Compile script
 on: 
   issues:
     types: [opened]
