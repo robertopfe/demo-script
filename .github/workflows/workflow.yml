@@ -15,7 +15,7 @@ env:
   KEYVAULT_NAME_PRE: pre
   KEYVAULT_NAME_PRO: pro
   
-  SQLSCRIPTS: './sqlscripts/${{ github.event.inputs.version }}'
+  SQLSCRIPTS: './sqlscripts/${{ github.event.inputs.version }}/'
   
 jobs:
   compile-mvn:
