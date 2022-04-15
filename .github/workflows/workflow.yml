@@ -1,9 +1,22 @@
 name: Compile with other repo dependency
-on: [push]
+on: 
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        default: 1.0.0
+        required: true
 env:
   KEYVAULT_NAME_DEV: dev
   KEYVAULT_NAME_PRE: pre
   KEYVAULT_NAME_PRO: pro
+  
+  SQLSCRIPTS: "./sqlscripts/${{ github.event.inputs.environment }}"
+  
 jobs:
   compile-mvn:
     runs-on: ubuntu-latest
@@ -21,3 +34,6 @@ jobs:
 
       - name: Get result
         run: echo "${{steps.assign-keyvault.outputs.result}}"
+        
+      - name: echo Scripts
+        run: echo "releasedb Upgrade ${SQLSCRIPTS}"
