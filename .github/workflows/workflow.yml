@@ -36,4 +36,4 @@ jobs:
         run: echo "${{steps.assign-keyvault.outputs.result}}"
         
       - name: echo Scripts
-        run: echo "releasedb Upgrade ${SQLSCRIPTS}"
+        run: echo "releasedb Upgrade ${SQLSCRIPTS}${{ github.event.inputs.version }}"
